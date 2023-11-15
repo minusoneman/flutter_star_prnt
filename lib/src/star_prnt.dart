@@ -43,7 +43,10 @@ class StarPrnt {
     required String portName,
     required String emulation,
     required PrintCommands printCommands,
+    required RootIsolateToken isolateToken,
   }) async {
+    BackgroundIsolateBinaryMessenger.ensureInitialized(isolateToken);
+
     dynamic result = await _channel.invokeMethod('print', {
       'portName': portName,
       'emulation': emulation,
